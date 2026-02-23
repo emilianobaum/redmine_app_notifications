@@ -1,5 +1,4 @@
 class AppNotificationsController < ApplicationController
-  unloadable
   # helper :app_notifications
   # include AppNotificationsHelper
   helper :custom_fields
