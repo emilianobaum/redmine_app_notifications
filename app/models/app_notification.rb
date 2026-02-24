@@ -7,7 +7,7 @@ class AppNotification < ActiveRecord::Base
   belongs_to :issue
   belongs_to :journal
   belongs_to :news
-  belongs_to :kbarticle, :class_name => "KbArticle", :foreign_key => "article_id"
+  belongs_to :kbarticle, :class_name => "KbArticle", :foreign_key => "article_id", :optional => true if defined?(KbArticle)
 
   def deliver
     unless Setting.plugin_redmine_app_notifications["faye_server_adress"].nil? || Setting.plugin_redmine_app_notifications["faye_server_adress"].empty?
@@ -34,6 +34,11 @@ class AppNotification < ActiveRecord::Base
     else
       I18n.t(:text_issue_added, :id => "##{issue.id}", :author => author)
     end
+  end
+
+  def kbarticle
+    return nil unless defined?(KbArticle)
+    super
   end
 
   def similar_notices
