@@ -345,6 +345,10 @@ $(document).ready(function () {
     }
   }
 
+  if (!AppNotifications.FayeServer || AppNotifications.FayeServer.trim() === '') {
+    return true;
+  }
+
   try {
     var client = new Faye.Client(AppNotifications.FayeServer);
   } catch (e) {
