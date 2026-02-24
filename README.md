@@ -1,6 +1,15 @@
 # Redmine App Notifications
 
 App notifications plugin provides simple in application notifications for Redmine. It can replace default e-mail notifications.
+Updated for Redmine 5.0. Tested on docker containers, maybe require create a secret key:
+
+> rake secret
+
+The aded to the compose file or declare the env variable
+
+> environment:
+>   SECRET_KEY_BASE: "tu_valor_generado" 
+
 
 ## Installation and Setup
 

@@ -19,4 +19,5 @@ module AppNotificationsAccountPatch
   end
 end
 
-MyController.send(:include, AppNotificationsAccountPatch)
+# En lugar de include, usamos prepend para que este módulo tenga prioridad.
+MyController.prepend(AppNotificationsAccountPatch)

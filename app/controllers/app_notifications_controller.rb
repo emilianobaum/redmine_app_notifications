@@ -27,6 +27,7 @@ class AppNotificationsController < ApplicationController
       @app_notifications = @app_notifications.where(viewed: true) if @viewed
       @app_notifications = @app_notifications.where(viewed: false) if @new
     end
+
     @limit = 10
     @app_notifications_pages = Paginator.new @app_notifications.count(:id), @limit, params["page"]
     @offset ||= @app_notifications_pages.offset
@@ -116,3 +117,4 @@ class AppNotificationsController < ApplicationController
     render :json => @new_list
   end
 end
+
