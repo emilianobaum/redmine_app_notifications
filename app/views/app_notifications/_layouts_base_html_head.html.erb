@@ -8,9 +8,12 @@
   <%= javascript_include_tag "app_notifications", :plugin => "redmine_app_notifications" %>
   <%= stylesheet_link_tag "app_notifications", :plugin => "redmine_app_notifications" %>
   <script>
-    let AppNotifications = {};
-    AppNotifications.NotificationsUrl = '<%= url_for(:controller => "app_notifications", :action => "index") %>';
-    AppNotifications.FayeServer = '<%= Setting.plugin_redmine_app_notifications["faye_server_adress"] %>';
-    AppNotifications.CurrentUserId = <%= User.current.id %>; 
+  window.AppNotifications = window.AppNotifications || {};
+  AppNotifications.NotificationsUrl = '<%= url_for(:controller => "app_notifications", :action => "index") %>';
+  AppNotifications.FayeServer = '<%= Setting.plugin_redmine_app_notifications["faye_server_adress"] %>';
+  AppNotifications.CurrentUserId = <%= User.current.id %>;
+  AppNotifications.isAvailable = <%= ActiveRecord::Base.connection.table_exists?('app_notifications') %>;
+  AppNotifications.UnreadUrl = '<%= url_for(:controller => "app_notifications", :action => "unread_number") %>';
+  console.log('AppNotifications initialized:', AppNotifications);
   </script>
 <% end %>
